@@ -9,7 +9,7 @@ export default defineConfig(({mode}) => {
   return {
     // Use relative asset paths so deployments under subpaths (e.g. GitHub Pages)
     // can load JS/CSS chunks correctly instead of resolving from the domain root.
-    base: basePath,
+    base: './',
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
