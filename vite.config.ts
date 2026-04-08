@@ -5,7 +5,11 @@ import {defineConfig, loadEnv} from 'vite';
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
+  const basePath = env.VITE_BASE_PATH || './';
   return {
+    // Use relative asset paths so deployments under subpaths (e.g. GitHub Pages)
+    // can load JS/CSS chunks correctly instead of resolving from the domain root.
+    base: basePath,
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),

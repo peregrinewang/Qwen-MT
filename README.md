@@ -18,3 +18,13 @@ View your app in AI Studio: https://ai.studio/apps/f761c983-aa75-4333-8303-31f43
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Deploy to GitHub Pages
+
+This project must be **built with Vite** before deploying. The root `index.html` references `/src/main.tsx` for local dev, but GitHub Pages should serve the compiled files from `dist/`.
+
+Recommended setup:
+
+1. In GitHub repository settings, set **Pages > Source** to **GitHub Actions**.
+2. Push to `main`.
+3. The workflow `.github/workflows/deploy-pages.yml` will build and deploy `dist/` automatically.
