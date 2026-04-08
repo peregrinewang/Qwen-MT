@@ -5,6 +5,7 @@ import {defineConfig, loadEnv} from 'vite';
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
+  const basePath = env.VITE_BASE_PATH || './';
   return {
     // Use relative asset paths so deployments under subpaths (e.g. GitHub Pages)
     // can load JS/CSS chunks correctly instead of resolving from the domain root.
