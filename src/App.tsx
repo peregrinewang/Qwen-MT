@@ -232,7 +232,7 @@ export default function App() {
     <TooltipProvider>
       <div className="min-h-screen flex flex-col p-4 md:p-8 max-w-6xl mx-auto space-y-6">
         {/* Header */}
-        <header className="flex items-center justify-between glass dark:glass-dark p-4 rounded-2xl shadow-xl border-white/20">
+        <header className="flex items-center justify-between ui-surface p-4 rounded-2xl shadow-xl">
           <div className="flex items-center space-x-3">
             <div className="bg-primary p-2 rounded-xl shadow-lg shadow-primary/20">
               <Languages className="text-white w-6 h-6" />
@@ -246,7 +246,7 @@ export default function App() {
             <Button 
               variant="ghost" 
               size="icon" 
-              className="rounded-full hover:bg-white/20"
+              className="rounded-full ui-hover-soft"
               onClick={() => setIsHistoryOpen(true)}
             >
               <HistoryIcon className="w-5 h-5" />
@@ -254,7 +254,7 @@ export default function App() {
             <Button 
               variant="ghost" 
               size="icon" 
-              className="rounded-full hover:bg-white/20"
+              className="rounded-full ui-hover-soft"
               onClick={() => setIsSettingsOpen(true)}
             >
               <SettingsIcon className="w-5 h-5" />
@@ -265,13 +265,13 @@ export default function App() {
         {/* Main Interface */}
         <main className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-grow">
           {/* Source Panel */}
-          <Card className="glass dark:glass-dark border-white/20 shadow-2xl overflow-hidden flex flex-col">
-            <div className="p-4 border-b border-white/10 flex items-center justify-between">
+          <Card className="ui-surface shadow-2xl overflow-hidden flex flex-col">
+            <div className="p-4 border-b border-[hsl(var(--surface-border)/0.35)] flex items-center justify-between">
               <Select value={sourceLang} onValueChange={setSourceLang}>
-                <SelectTrigger className="w-[180px] bg-transparent border-none focus:ring-0 font-medium">
+                <SelectTrigger className="w-[180px] ui-control border-none focus:ring-0 font-medium">
                   <SelectValue placeholder="Select Language" />
                 </SelectTrigger>
-                <SelectContent className="glass dark:glass-dark border-white/20">
+                <SelectContent className="ui-elevated border-[hsl(var(--surface-border)/var(--surface-border-alpha))]">
                   {SUPPORTED_LANGUAGES.map(lang => (
                     <SelectItem key={lang.code} value={lang.code}>
                       {lang.name}
@@ -283,7 +283,7 @@ export default function App() {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="rounded-full hover:bg-white/20"
+                className="rounded-full ui-hover-soft"
                 onClick={() => setSourceText("")}
                 disabled={!sourceText}
               >
@@ -312,13 +312,13 @@ export default function App() {
           </Card>
 
           {/* Target Panel */}
-          <Card className="glass dark:glass-dark border-white/20 shadow-2xl overflow-hidden flex flex-col relative">
+          <Card className="ui-surface shadow-2xl overflow-hidden flex flex-col relative">
             {/* Swap Button (Desktop) */}
             <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 hidden lg:block">
               <Button 
                 variant="outline" 
                 size="icon" 
-                className="rounded-full glass dark:glass-dark border-white/20 shadow-lg hover:scale-110 transition-transform"
+                className="rounded-full ui-elevated shadow-lg hover:scale-110 transition-transform"
                 onClick={swapLanguages}
                 disabled={sourceLang === "auto"}
               >
@@ -326,12 +326,12 @@ export default function App() {
               </Button>
             </div>
 
-            <div className="p-4 border-b border-white/10 flex items-center justify-between">
+            <div className="p-4 border-b border-[hsl(var(--surface-border)/0.35)] flex items-center justify-between">
               <Select value={targetLang} onValueChange={setTargetLang}>
-                <SelectTrigger className="w-[180px] bg-transparent border-none focus:ring-0 font-medium">
+                <SelectTrigger className="w-[180px] ui-control border-none focus:ring-0 font-medium">
                   <SelectValue placeholder="Select Language" />
                 </SelectTrigger>
-                <SelectContent className="glass dark:glass-dark border-white/20">
+                <SelectContent className="ui-elevated border-[hsl(var(--surface-border)/var(--surface-border-alpha))]">
                   {SUPPORTED_LANGUAGES.filter(l => l.code !== "auto").map(lang => (
                     <SelectItem key={lang.code} value={lang.code}>
                       {lang.name}
@@ -346,27 +346,27 @@ export default function App() {
                     <Button 
                       variant="ghost" 
                       size="icon" 
-                      className="rounded-full hover:bg-white/20"
+                      className="rounded-full ui-hover-soft"
                       onClick={() => copyToClipboard(translatedText)}
                       disabled={!translatedText}
                     >
                       <Copy className="w-4 h-4" />
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent>Copy</TooltipContent>
+                  <TooltipContent className="ui-elevated">Copy</TooltipContent>
                 </Tooltip>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button 
                       variant="ghost" 
                       size="icon" 
-                      className="rounded-full hover:bg-white/20"
+                      className="rounded-full ui-hover-soft"
                       disabled={!translatedText}
                     >
                       <Volume2 className="w-4 h-4" />
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent>Listen</TooltipContent>
+                  <TooltipContent className="ui-elevated">Listen</TooltipContent>
                 </Tooltip>
               </div>
             </div>
@@ -380,7 +380,7 @@ export default function App() {
         </main>
 
         {/* Advanced Options */}
-        <section className="glass dark:glass-dark p-6 rounded-2xl border-white/20 shadow-xl space-y-4">
+        <section className="ui-surface p-6 rounded-2xl shadow-xl space-y-4">
           <div className="flex items-center space-x-2 text-primary">
             <Sparkles className="w-5 h-5" />
             <h2 className="font-bold">Advanced Translation Options</h2>
@@ -393,7 +393,7 @@ export default function App() {
                   <span>Term Intervention</span>
                   <Tooltip>
                     <TooltipTrigger><Info className="w-3 h-3 opacity-50" /></TooltipTrigger>
-                    <TooltipContent>Force specific translations for certain terms (Glossary)</TooltipContent>
+                    <TooltipContent className="ui-elevated">Force specific translations for certain terms (Glossary)</TooltipContent>
                   </Tooltip>
                 </Label>
                 <Button 
@@ -412,7 +412,7 @@ export default function App() {
                     <div key={idx} className="flex items-center space-x-2">
                       <Input 
                         placeholder="Source" 
-                        className="h-8 text-[10px] glass border-white/10"
+                        className="h-8 text-[10px] ui-control"
                         value={item.source}
                         onChange={(e) => {
                           const newG = [...glossary];
@@ -422,7 +422,7 @@ export default function App() {
                       />
                       <Input 
                         placeholder="Target" 
-                        className="h-8 text-[10px] glass border-white/10"
+                        className="h-8 text-[10px] ui-control"
                         value={item.target}
                         onChange={(e) => {
                           const newG = [...glossary];
@@ -453,7 +453,7 @@ export default function App() {
                   <span>Translation Memory</span>
                   <Tooltip>
                     <TooltipTrigger><Info className="w-3 h-3 opacity-50" /></TooltipTrigger>
-                    <TooltipContent>Provide examples of previous translations to guide the model</TooltipContent>
+                    <TooltipContent className="ui-elevated">Provide examples of previous translations to guide the model</TooltipContent>
                   </Tooltip>
                 </Label>
                 <Button 
@@ -472,7 +472,7 @@ export default function App() {
                     <div key={idx} className="flex items-center space-x-2">
                       <Input 
                         placeholder="Source sentence" 
-                        className="h-8 text-[10px] glass border-white/10"
+                        className="h-8 text-[10px] ui-control"
                         value={item.source}
                         onChange={(e) => {
                           const newT = [...tmList];
@@ -482,7 +482,7 @@ export default function App() {
                       />
                       <Input 
                         placeholder="Target sentence" 
-                        className="h-8 text-[10px] glass border-white/10"
+                        className="h-8 text-[10px] ui-control"
                         value={item.target}
                         onChange={(e) => {
                           const newT = [...tmList];
@@ -512,12 +512,12 @@ export default function App() {
                 <span>Domain Prompting</span>
                 <Tooltip>
                   <TooltipTrigger><Info className="w-3 h-3 opacity-50" /></TooltipTrigger>
-                  <TooltipContent>Guide the model with domain-specific context (e.g. "IT", "Medical")</TooltipContent>
+                  <TooltipContent className="ui-elevated">Guide the model with domain-specific context (e.g. "IT", "Medical")</TooltipContent>
                 </Tooltip>
               </Label>
               <Textarea 
                 placeholder="e.g. This is a technical document about cloud computing..."
-                className="h-[120px] text-xs glass border-white/10 resize-none"
+                className="h-[120px] text-xs ui-control resize-none"
                 value={domainPrompt}
                 onChange={(e) => setDomainPrompt(e.target.value)}
               />
@@ -527,7 +527,7 @@ export default function App() {
 
         {/* Modals */}
         <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
-          <DialogContent className="glass dark:glass-dark border-white/20 sm:max-w-[425px]">
+          <DialogContent className="ui-elevated sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>API Configuration</DialogTitle>
               <DialogDescription>
@@ -543,7 +543,7 @@ export default function App() {
                   placeholder="sk-..." 
                   value={config.apiKey}
                   onChange={(e) => setConfig({ ...config, apiKey: e.target.value })}
-                  className="glass border-white/10"
+                  className="ui-control"
                 />
                 <p className="text-[10px] text-muted-foreground">
                   Get your key from Alibaba Cloud Model Studio.
@@ -555,10 +555,10 @@ export default function App() {
                   value={config.baseURL} 
                   onValueChange={(val) => setConfig({ ...config, baseURL: val })}
                 >
-                  <SelectTrigger className="glass border-white/10">
+                  <SelectTrigger className="ui-control">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="glass dark:glass-dark border-white/20">
+                  <SelectContent className="ui-elevated border-[hsl(var(--surface-border)/var(--surface-border-alpha))]">
                     {REGIONS.map(r => (
                       <SelectItem key={r.url} value={r.url}>{r.name}</SelectItem>
                     ))}
@@ -571,10 +571,10 @@ export default function App() {
                   value={config.model} 
                   onValueChange={(val) => setConfig({ ...config, model: val })}
                 >
-                  <SelectTrigger className="glass border-white/10">
+                  <SelectTrigger className="ui-control">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="glass dark:glass-dark border-white/20">
+                  <SelectContent className="ui-elevated border-[hsl(var(--surface-border)/var(--surface-border-alpha))]">
                     {MODELS.map(m => (
                       <SelectItem key={m.id} value={m.id}>{m.name}</SelectItem>
                     ))}
@@ -589,7 +589,7 @@ export default function App() {
         </Dialog>
 
         <Dialog open={isHistoryOpen} onOpenChange={setIsHistoryOpen}>
-          <DialogContent className="glass dark:glass-dark border-white/20 sm:max-w-[600px] h-[80vh] flex flex-col">
+          <DialogContent className="ui-elevated sm:max-w-[600px] h-[80vh] flex flex-col">
             <DialogHeader>
               <div className="flex items-center justify-between">
                 <DialogTitle>Translation History</DialogTitle>
@@ -601,7 +601,7 @@ export default function App() {
             <ScrollArea className="flex-grow pr-4">
               <div className="space-y-4 py-4">
                 {history.map((item) => (
-                  <div key={item.id} className="p-4 rounded-xl glass border-white/10 space-y-2 group">
+                  <div key={item.id} className="p-4 rounded-xl ui-control space-y-2 group">
                     <div className="flex items-center justify-between text-[10px] text-muted-foreground">
                       <div className="flex items-center space-x-2">
                         <span>{item.sourceLang}</span>

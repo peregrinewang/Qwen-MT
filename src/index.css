@@ -62,17 +62,38 @@
 }
 
 @utility glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: hsl(var(--surface-overlay) / var(--surface-overlay-alpha));
+  backdrop-filter: blur(var(--surface-blur));
+  -webkit-backdrop-filter: blur(var(--surface-blur));
+  border: 1px solid hsl(var(--surface-border) / var(--surface-border-alpha));
 }
 
 @utility glass-dark {
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: hsl(var(--surface-overlay) / var(--surface-overlay-alpha));
+  backdrop-filter: blur(var(--surface-blur));
+  -webkit-backdrop-filter: blur(var(--surface-blur));
+  border: 1px solid hsl(var(--surface-border) / var(--surface-border-alpha));
+}
+
+@utility ui-surface {
+  background: hsl(var(--surface-base) / var(--surface-base-alpha));
+  border-color: hsl(var(--surface-border) / var(--surface-border-alpha));
+}
+
+@utility ui-elevated {
+  background: hsl(var(--surface-elevated) / var(--surface-elevated-alpha));
+  border-color: hsl(var(--surface-border) / var(--surface-border-alpha));
+}
+
+@utility ui-control {
+  background: hsl(var(--surface-control) / var(--surface-control-alpha));
+  border-color: hsl(var(--surface-border) / var(--surface-border-alpha));
+}
+
+@utility ui-hover-soft {
+  &:hover {
+    background: hsl(var(--surface-hover) / var(--surface-hover-alpha));
+  }
 }
 
 @layer base {
@@ -97,6 +118,20 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
     --radius: 0.75rem;
+
+    --surface-base: 0 0% 100%;
+    --surface-base-alpha: 0.82;
+    --surface-elevated: 0 0% 100%;
+    --surface-elevated-alpha: 0.92;
+    --surface-control: 210 40% 98%;
+    --surface-control-alpha: 0.94;
+    --surface-overlay: 0 0% 100%;
+    --surface-overlay-alpha: 0.96;
+    --surface-border: 215 28% 78%;
+    --surface-border-alpha: 0.7;
+    --surface-hover: 221.2 83.2% 53.3%;
+    --surface-hover-alpha: 0.12;
+    --surface-blur: 16px;
   }
 
   .dark {
@@ -119,6 +154,20 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
+
+    --surface-base: 222 47% 10%;
+    --surface-base-alpha: 0.8;
+    --surface-elevated: 222 43% 12%;
+    --surface-elevated-alpha: 0.88;
+    --surface-control: 217 33% 20%;
+    --surface-control-alpha: 0.9;
+    --surface-overlay: 222 43% 12%;
+    --surface-overlay-alpha: 0.95;
+    --surface-border: 216 23% 42%;
+    --surface-border-alpha: 0.55;
+    --surface-hover: 217.2 91.2% 59.8%;
+    --surface-hover-alpha: 0.18;
+    --surface-blur: 18px;
   }
 }
 
