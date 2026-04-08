@@ -1,0 +1,5 @@
+{
+  "name": "Qwen-MT Glass Translate",
+  "description": "A Google Translate-inspired web application powered by Qwen-MT, featuring a liquid-glass Material Design UI.",
+  "requestFramePermissions": []
+}
